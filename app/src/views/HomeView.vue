@@ -91,6 +91,10 @@ function getDate(value?: string) {
 
   return `${year}-${month}-${day}`;
 }
+
+function addByDate(name: 'start' | 'end', target: any) {
+  filter.value.byDate![name] = target.value;
+}
 </script>
 
 <template>
@@ -134,12 +138,7 @@ function getDate(value?: string) {
           <input
             type="date"
             class="form-control"
-            @change="
-              () => {
-                //@ts-ignore
-                filter.byDate!.start = getDate($event.target?.value);
-              }
-            "
+            @change="(event) => addByDate('start', event.target)"
           />
         </label>
       </div>
@@ -149,12 +148,7 @@ function getDate(value?: string) {
           <input
             type="date"
             class="form-control"
-            @change="
-              () => {
-                //@ts-ignore
-                filter.byDate!.end = getDate($event.target?.value);
-              }
-            "
+            @change="(event) => addByDate('end', event.target)"
           />
         </label>
       </div>
