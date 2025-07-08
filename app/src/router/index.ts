@@ -1,23 +1,59 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import { loggedGuard, notLoggedGuard } from '@/router/guards/auth.ts';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      beforeEnter: loggedGuard,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: () => import('@/views/HomeView.vue'),
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('@/views/ProfileView.vue'),
+        },
+        {
+          path: 'tasks/create',
+          name: 'task-create',
+          component: () => import('@/views/tasks/CreateTaskView.vue'),
+        },
+        {
+          path: 'tasks/:id/edit',
+          name: 'task-edit',
+          component: () => import('@/views/tasks/EditTaskView.vue'),
+          props: true,
+        },
+      ],
+    },
+    {
+      path: '/account',
+      name: 'account',
+      beforeEnter: notLoggedGuard,
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: () => import('@/views/auth/LoginView.vue'),
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: () => import('@/views/auth/RegisterView.vue'),
+        },
+      ],
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      component: () => import('@/views/AboutView.vue'),
     },
   ],
-})
+});
 
-export default router
+export default router;

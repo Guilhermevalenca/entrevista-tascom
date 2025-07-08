@@ -1,8 +1,8 @@
-name: 'desafio-back-end-postgres'
+name: 'entrevista-tascom-api  '
 services:
   postgres:
     image: 'postgres'
-    container_name: 'desafio-back-end-postgres-database'
+    container_name: 'entrevista-tascom-api-database'
     ports:
       - '${DATABASE_PORT:-5432}:5432'
     environment:
