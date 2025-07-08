@@ -20,7 +20,7 @@ const filter = ref<IFilterTask>({
 });
 const search = ref<string>('');
 
-let debounce: NodeJS.Timeout | null = null;
+let debounce: number | null = null;
 
 onMounted(async () => {
   getTasks();
@@ -134,7 +134,10 @@ function getDate(value?: string) {
           From
           <input
             type="date" class="form-control"
-            @change="filter.byDate!.start = getDate($event.target?.value)"
+            @change="() => {
+              //@ts-ignore
+              filter.byDate!.start = getDate($event.target?.value);
+            }"
           />
         </label>
       </div>
@@ -143,7 +146,10 @@ function getDate(value?: string) {
           To
           <input
             type="date" class="form-control"
-            @change="filter.byDate!.end = getDate($event.target?.value)"
+            @change="() => {
+              //@ts-ignore
+              filter.byDate!.end = getDate($event.target?.value);
+            }"
           />
         </label>
       </div>
