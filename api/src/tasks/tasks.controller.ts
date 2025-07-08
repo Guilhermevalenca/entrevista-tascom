@@ -25,7 +25,6 @@ export class TasksController {
   @Post('index')
   @UseGuards(AuthGuard)
   async index(@Request() req) {
-    console.log(req.body.data.filter);
     try {
       filterTaskValidation.parse({
         ...req.body.data,

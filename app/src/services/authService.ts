@@ -2,7 +2,7 @@ import type { IUser } from '@/interfaces/IUser.ts';
 import axiosPlugin from '@/plugin/axiosPlugin.ts';
 import useUserStore from '@/stores/useUserStore.ts';
 
-export default new class AuthService {
+export default new (class AuthService {
   async login(user: Partial<IUser>) {
     try {
       const { data } = await axiosPlugin.post('/auth/login', user);
@@ -46,4 +46,4 @@ export default new class AuthService {
       };
     }
   }
-};
+})();

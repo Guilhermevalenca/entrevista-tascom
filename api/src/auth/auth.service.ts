@@ -22,7 +22,12 @@ export class AuthService {
     if (this.cryptoService.decrypt(user.password) !== pass) {
       throw new UnauthorizedException();
     }
-    const payload = { id: user.id, name: user.name, email };
+    const payload = {
+      id: user.id,
+      name: user.name,
+      email,
+      picture: user?.picture,
+    };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

@@ -40,7 +40,8 @@ async function submit() {
     } catch (error) {
       await swalPlugin.fire({
         icon: 'error',
-        title: 'Your information has been updated, but an error occurred while updating your credentials!',
+        title:
+          'Your information has been updated, but an error occurred while updating your credentials!',
         text: 'Please log in again.',
         timer: 3000,
         showConfirmButton: true,
@@ -74,7 +75,8 @@ async function submit() {
           Name
           <input
             v-model="user.name"
-            type="text" class="form-control"
+            type="text"
+            class="form-control"
             name="user.name"
             :disabled="!isEditingBasicInfo"
             :readonly="!isEditingBasicInfo"
@@ -86,7 +88,8 @@ async function submit() {
           Email
           <input
             v-model="user.email"
-            type="email" class="form-control"
+            type="email"
+            class="form-control"
             name="user.email"
             :disabled="!isEditingBasicInfo"
             :readonly="!isEditingBasicInfo"
@@ -98,6 +101,4 @@ async function submit() {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

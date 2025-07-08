@@ -8,7 +8,7 @@ const newPassword = ref({
   currentPassword: '',
   newPassword: '',
   newPasswordConfirmation: '',
-})
+});
 const isEditingPassword = ref<boolean>(false);
 
 async function submit() {
@@ -60,7 +60,8 @@ async function submit() {
           Current password
           <input
             v-model="newPassword.currentPassword"
-            type="password" class="form-control"
+            type="password"
+            class="form-control"
             name="newPassword.currentPassword"
             :disabled="!isEditingPassword"
             :readonly="!isEditingPassword"
@@ -72,7 +73,8 @@ async function submit() {
           New password
           <input
             v-model="newPassword.newPassword"
-            type="password" class="form-control"
+            type="password"
+            class="form-control"
             name="newPassword.newPassword"
             :disabled="!isEditingPassword"
             :readonly="!isEditingPassword"
@@ -84,7 +86,8 @@ async function submit() {
           New password confirmation
           <input
             v-model="newPassword.newPasswordConfirmation"
-            type="password" class="form-control"
+            type="password"
+            class="form-control"
             name="newPassword.newPasswordConfirmation"
             :disabled="!isEditingPassword"
             :readonly="!isEditingPassword"
@@ -96,6 +99,4 @@ async function submit() {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

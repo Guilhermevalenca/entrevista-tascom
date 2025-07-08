@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 import swalPlugin from '@/plugin/swalPlugin.ts';
 import userService from '@/services/userService.ts';
 import authService from '@/services/authService.ts';
@@ -46,26 +46,42 @@ async function submit() {
     <h2>Delete account</h2>
     <p>Once you delete your account, there is no going back. Please be certain.</p>
     <div>
-      <button
-        class="btn btn-danger" data-bs-toggle="modal"
-        data-bs-target="#deleteAccountModal"
-      >Delete account</button>
+      <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+        Delete account
+      </button>
     </div>
-    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="deleteAccountModal"
+      tabindex="-1"
+      aria-labelledby="deleteAccountModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <form @submit.prevent="submit">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="deleteAccountModalLabel">Delete account</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
             <div class="modal-body">
               <p>Are you sure you want to delete your account?</p>
               <p>Enter your password to confirm.</p>
-              <input type="password" v-model="confirmPasswordForDeleteAccount" class="form-control" />
+              <input
+                type="password"
+                v-model="confirmPasswordForDeleteAccount"
+                class="form-control"
+              />
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancel
+              </button>
               <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
             </div>
           </form>
@@ -75,6 +91,4 @@ async function submit() {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

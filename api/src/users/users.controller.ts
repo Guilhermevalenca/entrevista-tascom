@@ -8,6 +8,8 @@ import {
   UseGuards,
   Request,
   Delete,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import createUserValidation from '@/users/validations/createUserValidation';
 import { CryptoService } from '@/crypt/crypt.service';
@@ -16,6 +18,7 @@ import { User } from '@prisma/client';
 import { AuthGuard } from '@/auth/auth.guard';
 import UpdateBasicInfoValidation from '@/users/validations/UpdateBasicInfoValidation';
 import UpdatePasswordValidation from '@/users/validations/UpdatePasswordValidation';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('users')
 export class UsersController {
@@ -94,5 +97,19 @@ export class UsersController {
       throw new BadRequestException('Password incorrect');
     }
     return this.usersService.delete(req.user.id);
+  }
+
+  @Post('profile-picture')
+  @HttpCode(200)
+  @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('file'))
+  async updateProfilePicture(
+    @UploadedFile() file: Express.Multer.File,
+    @Request() req,
+  ) {
+    const { filePath } = await this.usersService.handleFileUpload(file);
+    return this.usersService.update(req.user.id, {
+      picture: filePath,
+    });
   }
 }

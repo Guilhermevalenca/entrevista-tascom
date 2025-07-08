@@ -4,4 +4,5 @@ export interface IUser {
   email: string;
   password?: string;
   passwordConfirmation?: string;
+  picture?: string | File;
 }

@@ -28,10 +28,7 @@ async function deleteTask() {
 </script>
 
 <template>
-  <div
-    class="card"
-    style="width: 20rem"
-  >
+  <div class="card" style="width: 20rem">
     <div class="card-body">
       <div class="card-title d-flex justify-content-between">
         <div>
@@ -68,7 +65,8 @@ async function deleteTask() {
             'bg-success': props.task.status === 'completed',
             'bg-warning': props.task.status === 'pending',
           }"
-        >{{ props.task.status }}</span>
+          >{{ props.task.status }}</span
+        >
       </p>
       <div class="d-flex justify-content-between">
         <RouterLink
@@ -78,7 +76,7 @@ async function deleteTask() {
             params: { id: props.task.id },
           }"
           :class="{ disabled: loading }"
-        >Edit task</RouterLink
+          >Edit task</RouterLink
         >
         <form @submit.prevent="changeStatus">
           <button class="btn btn-info" type="submit" :disabled="loading">

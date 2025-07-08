@@ -19,9 +19,18 @@ export default defineStore('user', () => {
     };
   }
 
+  function showPicture(): string {
+    if (user.value.picture) {
+      const url = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
+      return url + '/' + String(user.value.picture);
+    }
+    return '';
+  }
+
   return {
     user: computed(() => ({ ...user.value })),
     setUser,
     resetData,
+    showPicture,
   };
 });

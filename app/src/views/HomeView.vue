@@ -30,15 +30,19 @@ watch(page, async () => {
   getTasks();
 });
 
-watch(filter, async () => {
-  page.value = 1;
-  getTasks();
-}, {
-  deep: true
-});
+watch(
+  filter,
+  async () => {
+    page.value = 1;
+    getTasks();
+  },
+  {
+    deep: true,
+  },
+);
 
 watch(search, () => {
-  if(debounce) {
+  if (debounce) {
     clearTimeout(debounce);
   }
   debounce = setTimeout(() => {
@@ -101,12 +105,7 @@ function getDate(value?: string) {
     </div>
     <div class="mb-4 d-flex justify-content-center">
       <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search for..."
-          v-model="search"
-        />
+        <input type="text" class="form-control" placeholder="Search for..." v-model="search" />
       </div>
     </div>
     <div class="mb-4 d-flex justify-content-center">
@@ -133,11 +132,14 @@ function getDate(value?: string) {
         <label class="form-label">
           From
           <input
-            type="date" class="form-control"
-            @change="() => {
-              //@ts-ignore
-              filter.byDate!.start = getDate($event.target?.value);
-            }"
+            type="date"
+            class="form-control"
+            @change="
+              () => {
+                //@ts-ignore
+                filter.byDate!.start = getDate($event.target?.value);
+              }
+            "
           />
         </label>
       </div>
@@ -145,18 +147,22 @@ function getDate(value?: string) {
         <label class="form-label">
           To
           <input
-            type="date" class="form-control"
-            @change="() => {
-              //@ts-ignore
-              filter.byDate!.end = getDate($event.target?.value);
-            }"
+            type="date"
+            class="form-control"
+            @change="
+              () => {
+                //@ts-ignore
+                filter.byDate!.end = getDate($event.target?.value);
+              }
+            "
           />
         </label>
       </div>
     </div>
     <div class="row gap-5 justify-content-center">
       <TaskCard
-        v-for="task in tasks" :key="`task-${task.id}`"
+        v-for="task in tasks"
+        :key="`task-${task.id}`"
         :task="task"
         @deleteTask="getTasks"
         class="shadow shadow-2xl"
