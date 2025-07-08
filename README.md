@@ -18,6 +18,11 @@ git clone https://github.com/Guilhermevalenca/entrevista-tascom.git
   cp .env.example .env
 ```
 
+- Executando arquivo de migrations
+```bash
+  npm run migrate
+```
+
 - Inicie a api, porta default 3000
 ```bash
   npm run build
