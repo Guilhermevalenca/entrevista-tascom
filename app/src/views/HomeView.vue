@@ -93,7 +93,11 @@ function getDate(value?: string) {
 }
 
 function addByDate(name: 'start' | 'end', target: any) {
-  filter.value.byDate![name] = target.value;
+  if(target.value) {
+    filter.value.byDate![name] = target.value;
+  } else {
+    filter.value.byDate![name] = undefined;
+  }
 }
 </script>
 
